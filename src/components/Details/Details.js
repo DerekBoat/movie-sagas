@@ -3,6 +3,16 @@ import { connect } from 'react-redux';
 
 class Details extends Component {
 
+    componentDidMount() {
+        this.getGenres();
+    }// end componentDidMount
+
+    getGenres = () => {
+        this.props.dispatch({
+            type: 'GET_GENRES'
+        })
+    }
+
     // Changes the route back to home
     returnHome = () => {
         this.props.history.push('/')
@@ -20,6 +30,7 @@ class Details extends Component {
             <div className="Details">
                 <button onClick={this.returnHome}>Back To List</button>
                 <button onClick={this.goToEdit}>Edit</button>
+                {this.props.reduxState.genre}
             </div>
 
         );

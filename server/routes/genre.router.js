@@ -4,7 +4,7 @@ const pool = require("../modules/pool");
 
 router.get('/', (req, res) => {
     console.log('in get genres route');
-    let queryString = `SELECT "name" FROM "genres" JOIN "movie_genres" ON "genres"."id"="movie_genres"."genre_id" 
+    let queryString = `SELECT "name", "movie_genres"."movie_id" FROM "genres" JOIN "movie_genres" ON "genres"."id"="movie_genres"."genre_id" 
     JOIN "movies" ON "movie_genres"."movie_id"="movies"."id"`;
     pool.query(queryString)
         .then(results => {
