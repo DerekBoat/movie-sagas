@@ -28,6 +28,16 @@ const movies = (state = [], action) => {
     }
 }
 
+// Used to get the movies from the database
+function* getMovies() {
+    const favoriteResponse = yield Axios.get('/api/favorite')
+    console.log('in the GET getFavorite', favoriteResponse)
+    yield put({
+      type: 'SET_FAVORITES',
+      payload: favoriteResponse.data
+    })
+  }
+
 // Used to store the movie genres
 const genres = (state = [], action) => {
     switch (action.type) {
