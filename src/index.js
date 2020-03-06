@@ -9,10 +9,12 @@ import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 // Import saga middleware
 import createSagaMiddleware from 'redux-saga';
+import axios from 'axios';
+import { takeEvery, put } from 'redux-saga/effects';
 
 // Create the rootSaga generator function
 function* rootSaga() {
-
+    yield takeEvery('GET_MOVIES', getMovies);
 }
 
 // Create sagaMiddleware
@@ -30,11 +32,11 @@ const movies = (state = [], action) => {
 
 // Used to get the movies from the database
 function* getMovies() {
-    const favoriteResponse = yield Axios.get('/api/favorite')
-    console.log('in the GET getFavorite', favoriteResponse)
+    const movieResponse = yield axios.get('/movies')
+    console.log('in the GET getMovies', movieResponse)
     yield put({
-      type: 'SET_FAVORITES',
-      payload: favoriteResponse.data
+      type: 'SET_MOVIES',
+      payload: movieResponse.data
     })
   }
 
