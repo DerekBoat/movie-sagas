@@ -17,16 +17,15 @@ const pool = require("../modules/pool");
 // });
 
 router.get('/', (req, res) => {
-  console.log("in get route");
-  let queryString = 'SELECT * FROM "movies" ORDER BY "id" ASC';
-  pool.query(queryString)
-    .then(results => {
-      res.send(results.rows);
-    })
-    .catch(err => {
-      console.log(err);
-      res.sendStatus(500);
-    });
+    console.log("in get route");
+    let queryString = 'SELECT * FROM "movies" ORDER BY "id" ASC';
+    pool.query(queryString)
+        .then(results => {
+            res.send(results.rows);
+        }).catch(error => {
+            console.log(error);
+            res.sendStatus(500);
+        });
 });
 
 module.exports = router;
