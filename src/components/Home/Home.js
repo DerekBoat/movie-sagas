@@ -12,9 +12,12 @@ getMovies(){
   render() {  
     return (
       <div className="Home">
-        {JSON.stringify(this.props.reduxState.movies)}
+        {/* {JSON.stringify(this.props.reduxState.movies)} */}
+        {this.props.reduxState.movies.map(movie=><div key={movie.id}>{movie.title}</div>)}
         <br/>
         <br/>
+        {/* <div>{this.props.reduxState.searchReducer.data.map(gif=><li key={gif.id}><img alt={gif.url} src={gif.images.original.url} height='100px' /><button className='favoriteButton' name={gif.images.original.url} onClick={this.favoriteButton}>Add to Favs</button></li> )}</div>} */}
+
       </div>
      
     );
