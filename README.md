@@ -1,9 +1,9 @@
-# Project Name
+# Sagas Movie Database
+ 
 
-[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md
 
 ## Description
 
-Your project description goes here. What problem did you solve? How did you solve it?
+An app that allows you to learn the details of different movies from information coming from a data base. The app also allows you to view the different genres and edit the title and description in a separate page. 
 
-Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
+Technologies Used, <br/> SQL <br/> Node <br/> React <br/> Redux <br/> Sagas <br/> Routers

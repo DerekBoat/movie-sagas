@@ -44,6 +44,7 @@ function* getMovies() {
     })
 }
 
+// Used to get a single movie when all of the movie aren't needed. Used the id. 
 function* singleMovie(action) {
     try {
         const singleMovie = yield axios.get(`/movies/${action.payload}`)
@@ -70,6 +71,7 @@ function* getGenres(action) {
     }
 }
 
+// post request to update the database from the edit page
 function* updateMovie (action) {
     try {
         yield axios.post('/movies', action.payload);
@@ -78,6 +80,7 @@ function* updateMovie (action) {
     }
 }
 
+// the single movie is stored in a reducer from singleMovie generator function
 const single = (state = [], action) => {
     if (action.type === 'SINGLE') {
         return action.payload;
@@ -95,6 +98,7 @@ const genres = (state = [], action) => {
     }
 }
 
+// the movie.Id is stored in a reducer if needed. 
 const useId = (state = 0, action) => {
     if (action.type === 'USE_ID') {
         return action.payload;

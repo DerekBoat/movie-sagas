@@ -9,6 +9,7 @@ import Edit from '../Edit/Edit';
 
 class App extends Component {
   // Renders the entire app on the DOM
+  // routes are used to move between different pages
   render() {
     return (
       <div className="App">

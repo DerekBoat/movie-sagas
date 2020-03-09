@@ -17,7 +17,7 @@ class Details extends Component {
             type: 'SINGLE_MOVIE',
             payload: this.props.reduxState.useId
         })
-    }
+    }// getGenres is used to get the specific genres and the movie information for a single movie. 
 
     // Changes the route back to home
     returnHome = () => {

@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const pool = require("../modules/pool");
 
+// the get route to only get the specific genres from a single movie using Joins
 router.get('/:id', (req, res) => {
     console.log('in get genres route', req.params.id);
     let queryString = `SELECT "name" FROM "genres" JOIN "movie_genres" ON "genres"."id"="movie_genres"."genre_id" 
@@ -14,5 +15,6 @@ router.get('/:id', (req, res) => {
             res.sendStatus(500);
         })
 })
+
 
 module.exports = router;

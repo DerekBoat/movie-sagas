@@ -19,21 +19,21 @@ class Edit extends Component {
             payload: this.state
         })
         this.props.history.push('/Details');
-    }
+    } // saveChanges is the dispatch that sends through axios to the database a new set of information
 
     handleChangeTitle = (event) => {
         this.setState({
             ...this.state,
             movieTitle: event.target.value
         })
-    }
+    } //end handleChangeTitle used to store the new title
 
     handleChangeDescription = (event) => {
         this.setState({
             ...this.state,
             movieDescription: event.target.value
         })
-    }
+    } // end handleChangeDescription used to store the new description
 
   render() {  
     return (
