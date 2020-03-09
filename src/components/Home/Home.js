@@ -21,7 +21,8 @@ class Home extends Component {
       payload: event.target.id
     })
     this.props.dispatch({
-      type: 
+      type: 'SINGLE_MOVIE',
+      payload: event.target.id
     })
   console.log(event.target.id);
   }
