@@ -31,7 +31,7 @@ class Home extends Component {
     return (
       <div className="Home">
         {this.props.reduxState.movies.map(movie => <div key={movie.id} ><img src={movie.poster} 
-          onClick={this.handleClick} id={movie.id}/><br/>{movie.title}<br/>{movie.description}</div>)}
+          onClick={this.handleClick} id={movie.id}/><br/>{movie.title}<br/><br/>{movie.description}</div>)}
       </div>
 
     );

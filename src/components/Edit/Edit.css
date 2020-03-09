@@ -1,0 +1,16 @@
+button{
+    width: 100px;
+    background-color: #C0C0C0;
+}
+textarea{
+    width: 500px;
+    height: 200px;
+    background-color: #C0C0C0;
+}
+input{
+    width: 200px;
+    background-color: #C0C0C0;
+}
+body{
+    background-color : 	#FF7F50;
+}
