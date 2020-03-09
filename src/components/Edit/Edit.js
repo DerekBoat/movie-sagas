@@ -33,7 +33,6 @@ class Edit extends Component {
             ...this.state,
             movieDescription: event.target.value
         })
-        console.log(this.state);
     }
 
   render() {  

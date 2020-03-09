@@ -13,6 +13,10 @@ class Details extends Component {
             type: 'GET_GENRES',
             payload: this.props.reduxState.useId
         })
+        this.props.dispatch({
+            type: 'SINGLE_MOVIE',
+            payload: this.props.reduxState.useId
+        })
     }
 
     // Changes the route back to home
