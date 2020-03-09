@@ -13,15 +13,24 @@ class Home extends Component {
   }// end getMovies
 
   // When an image is clicked the route is sent to details
-  handleClick = () => {
-    this.props.history.push('/Details')
-  }// end handleClick
+  handleClick = (event) => {
+    this.props.history.push('/Details');
+    console.log(this.props.reduxState.movies);
+    this.props.dispatch({
+      type: 'USE_ID',
+      payload: event.target.id
+    })
+    this.props.dispatch({
+      type: 
+    })
+  console.log(event.target.id);
+  }
 
   render() {
     return (
       <div className="Home">
-        {this.props.reduxState.movies.map(movie => <div key={movie.id}><img src={movie.poster} 
-          onClick={this.handleClick} />{movie.title}{movie.description}</div>)}
+        {this.props.reduxState.movies.map(movie => <div key={movie.id} ><img src={movie.poster} 
+          onClick={this.handleClick} id={movie.id}/>{movie.title}{movie.description}</div>)}
       </div>
 
     );

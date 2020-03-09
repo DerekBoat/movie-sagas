@@ -5,11 +5,13 @@ class Details extends Component {
 
     componentDidMount() {
         this.getGenres();
+       
     }// end componentDidMount
 
     getGenres = () => {
         this.props.dispatch({
-            type: 'GET_GENRES'
+            type: 'GET_GENRES',
+            payload: this.props.reduxState.useId
         })
     }
 
@@ -30,7 +32,8 @@ class Details extends Component {
             <div className="Details">
                 <button onClick={this.returnHome}>Back To List</button>
                 <button onClick={this.goToEdit}>Edit</button>
-                {this.props.reduxState.genre}
+                
+                {this.props.reduxState.genres.map(genre => <li>{genre.name}</li>)}
             </div>
 
         );

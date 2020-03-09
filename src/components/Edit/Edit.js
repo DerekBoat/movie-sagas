@@ -3,17 +3,47 @@ import {connect} from 'react-redux';
 
 class Edit extends Component {
 
+    state = {
+        movieTitle: '',
+        movieDescription: '',
+    }
+
+    goBack = () => {
+        this.props.history.push('/Details');
+    }
+
+    saveChanges = () => {
+        this.props.dispatch({
+            type: 'UPDATE_MOVIE',
+            payload: this.state
+        })
+        this.props.history.push('/Details');
+    }
+
+    handleChangeTitle = (event) => {
+        this.setState({
+            ...this.state,
+            movieTitle: event.target.value
+        })
+    }
+
+    handleChangeDescription = (event) => {
+        this.setState({
+            ...this.state,
+            movieDescription: event.target.value
+        })
+        console.log(this.state);
+    }
 
   render() {  
     return (
       <div className="Edit">
-          <button>Cancel</button>
-          <button>Save</button>
+          <button onClick={this.goBack}>Cancel</button>
+          <button onClick={this.saveChanges}>Save</button>
           <br/>
-          <input></input>
+          <input onChange={this.handleChangeTitle}></input>
           <br/>
-          <textarea></textarea>
-
+          <textarea onChange={this.handleChangeDescription}></textarea>
       </div>
      
     );

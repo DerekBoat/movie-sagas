@@ -16,6 +16,8 @@ import { takeEvery, put } from 'redux-saga/effects';
 function* rootSaga() {
     yield takeEvery('GET_MOVIES', getMovies);
     yield takeEvery('GET_GENRES', getGenres);
+    //     yield takeEvery('UPDATE_MOVIE', updateMovie); 
+
 }
 
 // Create sagaMiddleware
@@ -36,10 +38,10 @@ function* getMovies() {
     const movieResponse = yield axios.get('/movies')
     console.log('in the GET getMovies', movieResponse)
     yield put({
-      type: 'SET_MOVIES',
-      payload: movieResponse.data
+        type: 'SET_MOVIES',
+        payload: movieResponse.data
     })
-  }
+}
 
 // Used to store the movie genres
 const genres = (state = [], action) => {
@@ -51,21 +53,34 @@ const genres = (state = [], action) => {
     }
 }
 
+const useId = (state = 0, action) => {
+    if (action.type === 'USE_ID') {
+        return action.payload;
+    }
+    return state;
+}
+
 // Used to get the genres from the database
-function* getGenres() {
-    const genreResponse = yield axios.get('/genres')
-    console.log('in the GET getGenres', genreResponse)
-    yield put({
-      type: 'SET_GENRES',
-      payload: genreResponse.data
-    })
-  }
+
+function* getGenres(action) {
+    try{
+        const genreResponse = yield axios.get(`/genres/${action.payload}`)
+        console.log('in the GET getGenres', genreResponse)
+        yield put({
+            type: 'SET_GENRES',
+            payload: genreResponse.data
+        })
+    } catch(error) {
+        console.log('error in getting genres', error);
+    }
+}
 
 // Create one store that all components can use
 const storeInstance = createStore(
     combineReducers({
         movies,
         genres,
+        useId
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),
@@ -74,6 +89,6 @@ const storeInstance = createStore(
 // Pass rootSaga into our sagaMiddleware
 sagaMiddleware.run(rootSaga);
 
-ReactDOM.render(<Provider store={storeInstance}><App /></Provider>, 
+ReactDOM.render(<Provider store={storeInstance}><App /></Provider>,
     document.getElementById('root'));
 registerServiceWorker();
