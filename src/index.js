@@ -17,7 +17,7 @@ function* rootSaga() {
     yield takeEvery('GET_MOVIES', getMovies);
     yield takeEvery('GET_GENRES', getGenres);
     yield takeEvery('SINGLE_MOVIE', singleMovie);
-    //     yield takeEvery('UPDATE_MOVIE', updateMovie); 
+    yield takeEvery('UPDATE_MOVIE', updateMovie); 
 
 }
 
@@ -56,6 +56,28 @@ function* singleMovie(action) {
     }
 }
 
+// Used to get the genres from the database
+function* getGenres(action) {
+    try {
+        const genreResponse = yield axios.get(`/genres/${action.payload}`)
+        console.log('in the GET getGenres', genreResponse)
+        yield put({
+            type: 'SET_GENRES',
+            payload: genreResponse.data
+        })
+    } catch (error) {
+        console.log('error in getting genres', error);
+    }
+}
+
+function* updateMovie (action) {
+    try {
+        yield axios.post('/movies', action.payload);
+    }catch(error){
+        console.log('error updating movie');
+    }
+}
+
 const single = (state = [], action) => {
     if (action.type === 'SINGLE') {
         return action.payload;
@@ -78,21 +100,6 @@ const useId = (state = 0, action) => {
         return action.payload;
     }
     return state;
-}
-
-// Used to get the genres from the database
-
-function* getGenres(action) {
-    try {
-        const genreResponse = yield axios.get(`/genres/${action.payload}`)
-        console.log('in the GET getGenres', genreResponse)
-        yield put({
-            type: 'SET_GENRES',
-            payload: genreResponse.data
-        })
-    } catch (error) {
-        console.log('error in getting genres', error);
-    }
 }
 
 // Create one store that all components can use

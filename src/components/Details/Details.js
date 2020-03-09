@@ -32,7 +32,7 @@ class Details extends Component {
             <div className="Details">
                 <button onClick={this.returnHome}>Back To List</button>
                 <button onClick={this.goToEdit}>Edit</button>
-                {JSON.stringify(this.props.reduxState.single)}
+                {this.props.reduxState.single.map(movie => <div>{movie.title} <br/>{movie.description}</div>)}
                 {this.props.reduxState.genres.map(genre => <li>{genre.name}</li>)}
             </div>
 

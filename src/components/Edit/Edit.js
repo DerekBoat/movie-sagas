@@ -6,6 +6,7 @@ class Edit extends Component {
     state = {
         movieTitle: '',
         movieDescription: '',
+        movieId: this.props.reduxState.useId
     }
 
     goBack = () => {
